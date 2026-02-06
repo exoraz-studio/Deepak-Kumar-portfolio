@@ -13,11 +13,11 @@
 </head>
 <body>
 
-    
-
     <canvas id="star-field"></canvas>
     <div id="earth-container"></div>
-    <div id="grid-overlay"></div> <div class="screen" id="screen-intro">
+    <div id="grid-overlay"></div> 
+
+    <div class="screen" id="screen-intro">
         <div class="center-hud">
             <h1 class="glitch" data-text="SYSTEM ONLINE">SYSTEM ONLINE</h1>
             <p class="blink">_SCROLL TO INITIATE UPLINK_</p>
@@ -28,28 +28,44 @@
         <div class="lock-hud">
             <h1 class="neon-red">TARGET ACQUIRED</h1>
             <div class="scan-line"></div>
-            <p>LOCATION: <span class="neon-blue">JAIPUR, INDIA</span></p>
+            <p>OPERATIVE LOCATED: <span class="neon-blue">JAIPUR SECTOR</span></p>
         </div>
     </div>
 
     <div class="screen" id="screen-profile">
-        <div class="glass-panel profile-card">
-            <div class="profile-header">
+        <div class="cyber-tile profile-wide">
+            <div class="tile-header">
+                <span>OPERATIVE_DOSSIER_V1.0</span>
+                <span class="status-badge">STATUS: ONLINE</span>
+            </div>
+            <div class="profile-layout">
                 <div class="hex-frame">
-                    <img src="https://media.licdn.com/dms/image/D5603AQF-y8-bB6zK-w/profile-displayphoto-shrink_800_800/0/1706606000000?e=2147483647&v=beta&t=XXXXX" alt="Operative">
+                    <img src="/images/Screenshot 2026-02-06 155817_upscayl_2x_upscayl-standard-4x.png" alt="Operative">
                 </div>
-                <div class="identity-data">
+                <div class="dossier-text">
                     <h2 class="neon-blue">DEEPAK (KD) KUMAR</h2>
-                    <div class="badges">
-                        <span class="badge blue">SOC ANALYST</span>
-                        <span class="badge red">DEFENSE SPECIALIST</span>
+                    <h3 class="neon-purple">CYBER-SENTINEL // SOC ANALYST</h3>
+                    <p class="narrative">
+                        "While others view the web as a playground, I see a battlefield."
+                        <br><br>
+                        Stationed at Poornima University, I am not just a student; I am an active node in the global defense grid. 
+                        My mission is to stand between chaos and order. Trained in the dark arts of the Red Team to better serve the Light, 
+                        I specialize in dissecting threats before they breach the perimeter.
+                    </p>
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <span class="label">ETHICS</span>
+                            <div class="bar"><div class="fill blue" style="width: 100%"></div></div>
+                        </div>
+                        <div class="stat">
+                            <span class="label">CURIOSITY</span>
+                            <div class="bar"><div class="fill purple" style="width: 100%"></div></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="terminal-text">
-                <p>> STATUS: ACTIVE</p>
-                <p>> CLEARANCE: EC-COUNCIL CERTIFIED</p>
-                <p>> MOTTO: "Great Power Comes With Great Responsibilities"</p>
+            <div class="tile-footer">
+                <button class="cyber-btn">DOWNLOAD ENCRYPTED RESUME</button>
             </div>
         </div>
     </div>
@@ -57,76 +73,165 @@
     <div class="screen" id="screen-dual">
         <div class="dual-container">
             <div class="side defender">
-                <div class="content">
-                    <h2 class="neon-blue">THE SHIELD</h2>
-                    <p>SECURING INFRASTRUCTURE</p>
-                    <ul class="cyber-list">
-                        <li>SOC Operations</li>
-                        <li>SIEM Monitoring</li>
-                        <li>Threat Intelligence</li>
-                    </ul>
+                <div class="glass-overlay">
+                    <div class="icon-bg">🛡️</div>
+                    <h2 class="neon-blue">THE ARCHITECT (DEFENSE)</h2>
+                    <p class="subtitle">"To protect the system, one must become the wall."</p>
+                    <div class="spec-list">
+                        <div class="spec-item">
+                            <h4>SOC OPERATIONS</h4>
+                            <p>Real-time monitoring of global threat vectors. I don't just watch logs; I read the story they tell.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>SIEM DRAGNETS</h4>
+                            <p>Deploying advanced logic to catch anomalies that slip past standard firewalls.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>INCIDENT RESPONSE</h4>
+                            <p>Surgical precision in isolating and neutralizing active breaches.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-icon">🛡️</div>
             </div>
             
             <div class="side attacker">
-                <div class="content">
-                    <h2 class="neon-red">THE SWORD</h2>
-                    <p>UNDERSTANDING THE ENEMY</p>
-                    <ul class="cyber-list">
-                        <li>Phishing Simulation</li>
-                        <li>Ransomware Mitigation</li>
-                        <li>Ethical Hacking</li>
-                    </ul>
+                <div class="glass-overlay">
+                    <div class="icon-bg">⚔️</div>
+                    <h2 class="neon-red">THE ADVERSARY (OFFENSE)</h2>
+                    <p class="subtitle">"To defeat the enemy, one must think like the enemy."</p>
+                    <div class="spec-list">
+                        <div class="spec-item">
+                            <h4>RED TEAM SIMULATION</h4>
+                            <p>Emulating state-level threat actors to expose structural weaknesses.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>PHISHING FORENSICS</h4>
+                            <p>Deconstructing social engineering attacks to immunize the human element.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>RANSOMWARE MITIGATION</h4>
+                            <p>Studying the payload to engineer the antidote.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-icon">⚔️</div>
             </div>
         </div>
     </div>
 
     <div class="screen" id="screen-skills">
         <div class="hud-grid">
-            <div class="hud-card">
-                <div class="card-header">CYBER-DEFENSE PROTOCOL</div>
-                <div class="progress-bar"><div class="fill" style="width: 90%"></div></div>
-                <div class="stat-row">
-                    <span>LOG ANALYSIS</span>
-                    <span class="val">90%</span>
+            
+            <div class="hex-tile">
+                <div class="tile-header">
+                    <span>THREAT_INTEL_MODULE</span>
+                    <span class="warn">LVL: HIGH</span>
                 </div>
-                <div class="stat-row">
-                    <span>INCIDENT RESPONSE</span>
-                    <span class="val">85%</span>
+                <div class="tile-body">
+                    <div class="stat-row">
+                        <span>LOG_ANALYSIS</span>
+                        <span class="val">92%</span>
+                    </div>
+                    <div class="bar"><div class="fill blue" style="width: 92%"></div></div>
+                    
+                    <div class="stat-row">
+                        <span>PATTERN_RECOGNITION</span>
+                        <span class="val">88%</span>
+                    </div>
+                    <div class="bar"><div class="fill blue" style="width: 88%"></div></div>
                 </div>
-            </div>
-
-            <div class="hud-card">
-                <div class="card-header">NETWORK SECURITY</div>
-                <div class="progress-bar"><div class="fill red" style="width: 75%"></div></div>
-                <div class="stat-row">
-                    <span>THREAT DETECTION</span>
-                    <span class="val">ACTIVE</span>
-                </div>
-                <div class="stat-row">
-                    <span>PHISHING ANALYSIS</span>
-                    <span class="val">SECURE</span>
+                <div class="tile-footer">
+                    <div class="cyber-btn sm">INITIATE SCAN</div>
                 </div>
             </div>
 
-            <div class="hud-card">
-                <div class="card-header">CORE PROCESSING</div>
-                <div class="progress-bar"><div class="fill purple" style="width: 95%"></div></div>
-                <div class="stat-row">
-                    <span>CRITICAL THINKING</span>
-                    <span class="val">OPTIMIZED</span>
+            <div class="hex-tile">
+                <div class="tile-header">
+                    <span>COUNTER_MEASURES</span>
+                    <span class="crit">ACTIVE</span>
                 </div>
-                <div class="stat-row">
-                    <span>COMMUNICATION</span>
-                    <span class="val">LINKED</span>
+                <div class="tile-body">
+                    <div class="stat-row">
+                        <span>PHISHING_ANALYSIS</span>
+                        <span class="val">DETECTED</span>
+                    </div>
+                    <div class="bar"><div class="fill red" style="width: 95%"></div></div>
+                    
+                    <div class="stat-row">
+                        <span>MALWARE_DISSECTION</span>
+                        <span class="val">LOADING...</span>
+                    </div>
+                    <div class="bar"><div class="fill red" style="width: 70%"></div></div>
                 </div>
+                <div class="tile-footer">
+                    <div class="cyber-btn sm red">DEPLOY</div>
+                </div>
+            </div>
+
+            <div class="hex-tile">
+                <div class="tile-header">
+                    <span>NEURAL_PROCESSING</span>
+                    <span class="ok">OPTIMIZED</span>
+                </div>
+                <div class="tile-body">
+                    <div class="stat-row">
+                        <span>CRITICAL_THINKING</span>
+                        <span class="val">100%</span>
+                    </div>
+                    <div class="bar"><div class="fill purple" style="width: 100%"></div></div>
+                    
+                    <div class="stat-row">
+                        <span>CREATIVE_WRITING</span>
+                        <span class="val">LINKED</span>
+                    </div>
+                    <div class="bar"><div class="fill purple" style="width: 90%"></div></div>
+                </div>
+                <div class="tile-footer">
+                    <div class="cyber-btn sm purple">CONNECT</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="screen" id="screen-certs">
+        <div class="cert-container">
+            <h2 class="section-title">SECURITY CLEARANCES</h2>
+            <div class="cert-card">
+                <div class="cert-icon">🔒</div>
+                <div class="cert-info">
+                    <h3>EC-COUNCIL CERTIFIED SOC ANALYST</h3>
+                    <p>Validation: Verified Global Standard</p>
+                    <p class="small">Mastery in SIEM, Incident Response, and Log Management.</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">🎣</div>
+                <div class="cert-info">
+                    <h3>PHISHING PREVENTION SPECIALIST</h3>
+                    <p>Validation: Advanced Threat Defense</p>
+                    <p class="small">Counter-social engineering protocols.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen" id="screen-contact">
+        <div class="cyber-tile contact-tile">
+            <div class="tile-header">ESTABLISH_SECURE_CHANNEL</div>
+            <div class="tile-body center">
+                <p>Transmission ready. Send coordinates for collaboration.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/raj-deepakkumar/" class="cyber-link">LINKEDIN_NEURAL_NET</a>
+                    <a href="#" class="cyber-link">EMAIL_FREQUENCY</a>
+                    <a href="#" class="cyber-link">GITHUB_REPO</a>
+                </div>
+            </div>
+            <div class="tile-footer">
+                <div class="cyber-btn">SEND TRANSMISSION</div>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>

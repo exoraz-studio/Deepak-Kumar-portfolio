@@ -212,3 +212,226 @@ h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 4rem; text-shadow: 0 
 .stat-row { display: flex; justify-content: space-between; font-family: 'Share Tech Mono'; margin-top: 10px; color: #ccc; }
 
 
+/* =========================================
+   CORE & RESET
+   ========================================= */
+:root {
+    --neon-blue: #00f3ff;
+    --neon-red: #ff0055;
+    --neon-purple: #bc13fe;
+    --bg-dark: #050505;
+    --glass: rgba(10, 15, 20, 0.6);
+}
+
+body {
+    margin: 0;
+    background: var(--bg-dark);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    overflow: hidden; /* NO SCROLLBARS */
+}
+
+/* BACKGROUNDS */
+#star-field { position: fixed; top: 0; left: 0; z-index: 0; }
+#earth-container { position: fixed; top: 0; left: 0; z-index: 1; transition: opacity 1s; }
+#grid-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 2; pointer-events: none;
+}
+
+/* =========================================
+   SCREEN MANAGEMENT (Fixes Black Box)
+   ========================================= */
+.screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    /* HIDDEN BY DEFAULT */
+    opacity: 0; visibility: hidden; pointer-events: none;
+}
+
+#screen-intro { opacity: 1; visibility: visible; pointer-events: auto; }
+
+/* TYPOGRAPHY */
+h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 4rem; text-shadow: 0 0 20px var(--neon-blue); margin: 0; }
+.neon-blue { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+.neon-red { color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red); }
+.neon-purple { color: var(--neon-purple); text-shadow: 0 0 10px var(--neon-purple); }
+
+/* =========================================
+   THE "CYBER TILE" (Matches your Reference)
+   ========================================= */
+.cyber-tile {
+    background: rgba(8, 10, 15, 0.75); /* Dark Glass */
+    border: 1px solid var(--neon-blue);
+    border-radius: 10px;
+    padding: 0; /* Header/Footer handles padding */
+    width: 350px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    display: flex; flex-direction: column;
+}
+
+/* Corner Accents (The L shapes) */
+.cyber-tile::before {
+    content: ''; position: absolute; top: -2px; left: -2px; width: 20px; height: 20px;
+    border-top: 2px solid var(--neon-blue); border-left: 2px solid var(--neon-blue); border-radius: 4px 0 0 0;
+}
+.cyber-tile::after {
+    content: ''; position: absolute; bottom: -2px; right: -2px; width: 20px; height: 20px;
+    border-bottom: 2px solid var(--neon-blue); border-right: 2px solid var(--neon-blue); border-radius: 0 0 4px 0;
+}
+
+/* Header */
+.tile-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+    font-family: 'Orbitron'; letter-spacing: 1px; color: var(--neon-blue);
+    font-size: 0.9rem;
+}
+.status-badge, .warn, .crit, .ok { font-size: 0.7rem; padding: 2px 6px; background: rgba(0, 243, 255, 0.1); border: 1px solid var(--neon-blue); }
+.crit { border-color: var(--neon-red); color: var(--neon-red); background: rgba(255, 0, 85, 0.1); }
+.ok { border-color: var(--neon-purple); color: var(--neon-purple); }
+
+/* Body */
+.tile-body { padding: 20px; }
+.stat-row { display: flex; justify-content: space-between; font-family: 'Share Tech Mono'; font-size: 0.9rem; color: #ccc; margin-bottom: 5px; margin-top: 15px; }
+.bar { height: 4px; background: #222; width: 100%; border-radius: 2px; overflow: hidden; }
+.fill { height: 100%; background: linear-gradient(90deg, var(--neon-blue), transparent); box-shadow: 0 0 10px var(--neon-blue); }
+.fill.red { background: linear-gradient(90deg, var(--neon-red), transparent); box-shadow: 0 0 10px var(--neon-red); }
+.fill.purple { background: linear-gradient(90deg, var(--neon-purple), transparent); box-shadow: 0 0 10px var(--neon-purple); }
+
+/* Footer / Button */
+.tile-footer { padding: 15px 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; }
+.cyber-btn {
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 8px 30px;
+    font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 2px;
+    cursor: pointer; transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+.cyber-btn:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 20px var(--neon-blue); }
+.cyber-btn.red { border-color: var(--neon-red); color: var(--neon-red); background: rgba(255, 0, 85, 0.1); box-shadow: 0 0 10px rgba(255, 0, 85, 0.2); }
+.cyber-btn.red:hover { background: var(--neon-red); color: #000; }
+.cyber-btn.purple { border-color: var(--neon-purple); color: var(--neon-purple); background: rgba(188, 19, 254, 0.1); }
+.cyber-btn.purple:hover { background: var(--neon-purple); color: #000; }
+
+/* =========================================
+   SECTION SPECIFICS
+   ========================================= */
+
+/* PROFILE (Expanded) */
+.profile-wide { width: 800px; max-width: 90%; }
+.profile-layout { display: flex; gap: 40px; padding: 30px; }
+.hex-frame img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 20px var(--neon-blue); }
+.dossier-text { text-align: left; flex: 1; }
+.narrative { font-family: 'Share Tech Mono'; color: #bbb; line-height: 1.6; margin: 15px 0; border-left: 2px solid var(--neon-blue); padding-left: 15px; }
+
+/* DUAL CORE (Attacker vs Defender) */
+.dual-container { display: flex; width: 100%; height: 100%; }
+.side { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.5s ease; border: 1px solid transparent; }
+.side:hover { flex: 1.5; background: rgba(0,0,0,0.3); }
+
+.defender { border-right: 1px solid var(--neon-blue); background: linear-gradient(to right, rgba(0,10,30,0.8), transparent); }
+.attacker { border-left: 1px solid var(--neon-red); background: linear-gradient(to left, rgba(30,0,0,0.8), transparent); }
+
+.glass-overlay { padding: 40px; max-width: 500px; text-align: center; }
+.icon-bg { font-size: 5rem; margin-bottom: 20px; opacity: 0.8; }
+.subtitle { font-style: italic; color: #fff; opacity: 0.7; margin-bottom: 30px; }
+.spec-list { text-align: left; }
+.spec-item { margin-bottom: 20px; border-left: 2px solid #555; padding-left: 15px; }
+.defender .spec-item { border-color: var(--neon-blue); }
+.attacker .spec-item { border-color: var(--neon-red); }
+.spec-item h4 { margin: 0; color: #fff; font-family: 'Orbitron'; }
+.spec-item p { margin: 5px 0 0 0; color: #aaa; font-family: 'Share Tech Mono'; font-size: 0.9rem; }
+
+/* SKILLS HUD */
+.hud-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+
+/* CONTACT */
+.contact-tile { width: 500px; }
+.cyber-link { display: block; color: #fff; text-decoration: none; border: 1px solid #333; padding: 10px; margin: 5px 0; text-align: center; transition: 0.3s; font-family: 'Share Tech Mono'; }
+.cyber-link:hover { border-color: var(--neon-blue); background: rgba(0, 243, 255, 0.1); }
+
+/* CERTIFICATIONS */
+.cert-container { display: flex; gap: 20px; flex-direction: column; align-items: center; }
+.cert-card { display: flex; align-items: center; background: rgba(0,0,0,0.8); border: 1px solid #333; padding: 20px; width: 500px; border-left: 4px solid var(--neon-blue); }
+.cert-icon { font-size: 2rem; margin-right: 20px; }
+.cert-info h3 { margin: 0; color: var(--neon-blue); font-family: 'Orbitron'; font-size: 1.1rem; }
+.cert-info p { margin: 5px 0 0 0; font-family: 'Share Tech Mono'; color: #aaa; }
+
+
+
+/* =========================================
+   NEW: ANIMATED HEX TILES (Reference Image Style)
+   ========================================= */
+
+/* 1. The Animation Definition */
+@keyframes lineFlow {
+    0% { stroke-dashoffset: 1000; }
+    100% { stroke-dashoffset: 0; }
+}
+
+/* 2. The Tile Container */
+.hex-tile {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 40px; /* Push content inside the hexagon graphic */
+    box-sizing: border-box;
+    
+    /* THE DUAL RED/BLUE GLOW */
+    /* We use filters to create a complex, multi-colored shadow */
+    filter: drop-shadow(-10px -10px 20px rgba(0, 243, 255, 0.3))  /* Blue Top-Left */
+            drop-shadow(10px 10px 20px rgba(255, 0, 85, 0.3));    /* Red Bottom-Right */
+    
+    /* THE COMPLEX SVG BACKGROUND */
+    /* This is an embedded vector graphic that draws the lines and shapes */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3Cstyle%3E.cls-1,.cls-2{fill:none;stroke-miterlimit:10;}.cls-1{stroke:%2300f3ff;stroke-width:2px;}.cls-2{stroke:rgba(0,243,255,0.3);stroke-width:1px;stroke-dasharray:10 5;animation:flow 20s linear infinite;}@keyframes flow{to{stroke-dashoffset:-1000;}}%3C/style%3E%3C/defs%3E%3Cg opacity='0.8'%3E%3Cpolygon class='cls-1' points='388.5 300 388.5 100 200 11.5 11.5 100 11.5 300 200 388.5 388.5 300'/%3E%3Cline class='cls-1' x1='200' y1='11.5' x2='200' y2='100'/%3E%3Cline class='cls-1' x1='200' y1='388.5' x2='200' y2='300'/%3E%3Cline class='cls-1' x1='11.5' y1='100' x2='100' y2='150'/%3E%3Cline class='cls-1' x1='388.5' y1='100' x2='300' y2='150'/%3E%3Cline class='cls-1' x1='11.5' y1='300' x2='100' y2='250'/%3E%3Cline class='cls-1' x1='388.5' y1='300' x2='300' y2='250'/%3E%3C/g%3E%3Cg opacity='0.4'%3E%3Cline class='cls-2' x1='100' y1='150' x2='300' y2='150'/%3E%3Cline class='cls-2' x1='100' y1='250' x2='300' y2='250'/%3E%3Cline class='cls-2' x1='100' y1='150' x2='100' y2='250'/%3E%3Cline class='cls-2' x1='300' y1='150' x2='300' y2='250'/%3E%3Cline class='cls-2' x1='200' y1='100' x2='100' y2='150'/%3E%3Cline class='cls-2' x1='200' y1='100' x2='300' y2='150'/%3E%3Cline class='cls-2' x1='200' y1='300' x2='100' y2='250'/%3E%3Cline class='cls-2' x1='200' y1='300' x2='300' y2='250'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover effect for the tile */
+.hex-tile:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(-15px -15px 30px rgba(0, 243, 255, 0.6)) 
+            drop-shadow(15px 15px 30px rgba(255, 0, 85, 0.6));
+}
+
+/* Adjustments for content inside the new shape */
+.hex-tile .tile-header {
+    border-bottom: none;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.hex-tile .tile-header span:first-child {
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.hex-tile .tile-body {
+    padding: 0; /* Remove extra padding */
+}
+
+.hex-tile .tile-footer {
+    border-top: none;
+}
+
+
