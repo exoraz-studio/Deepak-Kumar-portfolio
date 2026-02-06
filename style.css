@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    overflow: hidden; /* DISABLE STANDARD SCROLLING */
+}
+
+#loader {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: #00f3ff; font-family: 'Orbitron'; z-index: 9999;
+}
+
+#earth-container {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 1;
+}
+
+/* CENTERING TEXT LAYERS */
+.overlay {
+    position: fixed; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+
+h1 { font-family: 'Orbitron'; font-size: 4rem; color: #fff; text-shadow: 0 0 30px #00f3ff; margin: 0; }
+p { font-size: 1.2rem; letter-spacing: 5px; color: #00f3ff; }
+
+/* THE FINAL PROFILE CARD */
+.profile-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 20;
+    opacity: 0; /* Hidden by default */
+    transform: scale(0); /* Shrunk to zero (inside earth) */
+}
+
+.glass-panel {
+    background: rgba(5, 10, 20, 0.9);
+    border: 1px solid #333;
+    border-top: 5px solid #ff0055;
+    padding: 50px;
+    width: 600px;
+    box-shadow: 0 0 100px rgba(0,0,0,1);
+    backdrop-filter: blur(10px);
+}
+
+.header { display: flex; align-items: center; gap: 20px; }
+.avatar { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #00f3ff; }
+.neon { color: #00f3ff; margin: 0; font-size: 2.5rem; }
+.badge { background: #ff0055; padding: 2px 8px; font-weight: bold; }
+.bio-text { margin-top: 20px; font-size: 1.1rem; color: #ccc; }
+
+
+/* STAR FIELD STYLES */
+#star-field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind the Earth */
+    background: #000; /* The darkness of space */
+    pointer-events: none; /* Let clicks pass through to the earth/scroll */
+}
+
+/* UPDATE EXISTING LAYERS */
+#earth-container {
+    z-index: 1; /* Earth sits on top of stars */
+}
+
+/* Ensure controls are still clickable */
+#scroll-overlay {
+    z-index: 10;
+}

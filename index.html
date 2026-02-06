@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deepak Kumar | Cyber Defense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/globe.gl"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
+</head>
+<body>
+    <canvas id="star-field"></canvas>
+
+    <div id="loader">INITIALIZING SATELLITE...</div>
+
+    <div id="earth-container"></div>
+
+    <div class="overlay" id="text-phase-1">
+        <h1>SYSTEM ONLINE</h1>
+        <p>SCROLL TO INITIATE</p>
+    </div>
+
+    <div class="overlay" id="text-phase-2" style="opacity: 0; pointer-events: none;">
+        <h1 style="font-size: 3rem; color: #ff0055;">TARGET LOCKED</h1>
+        <p>LOCATION: INDIA</p>
+    </div>
+
+    <div class="profile-container" id="profile-card">
+        <div class="glass-panel">
+            <div class="header">
+                <img src="https://media.licdn.com/dms/image/D5603AQF-y8-bB6zK-w/profile-displayphoto-shrink_800_800/0/1706606000000?e=2147483647&v=beta&t=XXXXX" class="avatar">
+                <div class="titles">
+                    <h2 class="neon">DEEPAK (KD) KUMAR</h2>
+                    <span class="badge">SOC ANALYST</span>
+                </div>
+            </div>
+            <hr>
+            <div class="bio-text">
+                <p>"Great Power Comes With Great Responsibilities"</p>
+                <p class="small">Specializing in Threat Intelligence & SIEM Monitoring.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
