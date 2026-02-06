@@ -430,6 +430,8 @@ h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 4rem; text-shadow: 0 
     padding: 0; /* Remove extra padding */
 }
 
+
+
 .hex-tile .tile-footer {
     border-top: none;
 }
