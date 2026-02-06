@@ -74,3 +74,141 @@ p { font-size: 1.2rem; letter-spacing: 5px; color: #00f3ff; }
 #scroll-overlay {
     z-index: 10;
 }
+
+
+/* =========================================
+   CORE TERMINAL STYLES
+   ========================================= */
+:root {
+    --neon-blue: #00f3ff;
+    --neon-red: #ff0055;
+    --neon-purple: #bc13fe;
+    --bg-dark: #050505;
+    --glass: rgba(10, 20, 30, 0.7);
+}
+
+body {
+    margin: 0;
+    background: var(--bg-dark);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    overflow: hidden; /* NO SCROLLBARS */
+}
+
+/* BACKGROUNDS */
+#star-field { position: fixed; top: 0; left: 0; z-index: 0; }
+#earth-container { position: fixed; top: 0; left: 0; z-index: 1; transition: opacity 1s; }
+#grid-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* LOADER */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 9999;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+}
+.loader-bar { width: 200px; height: 2px; background: var(--neon-blue); margin-top: 20px; animation: load 2s infinite; }
+@keyframes load { 0% { width: 0; opacity: 0; } 50% { width: 200px; opacity: 1; } 100% { width: 0; opacity: 0; transform: translateX(200px); } }
+
+/* =========================================
+   SCREEN MANAGEMENT (The "Slides")
+   ========================================= */
+/* =========================================
+   SCREEN MANAGEMENT (UPDATED FIX)
+   ========================================= */
+.screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    
+    /* THE FIX: Force hide everything by default */
+    opacity: 0; 
+    visibility: hidden; 
+    pointer-events: none;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+/* Make ONLY the intro visible initially */
+#screen-intro { 
+    opacity: 1; 
+    visibility: visible; 
+    pointer-events: auto;
+}
+
+/* TYPOGRAPHY */
+h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 4rem; text-shadow: 0 0 20px var(--neon-blue); margin: 0; }
+.neon-blue { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+.neon-red { color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red); }
+
+/* =========================================
+   SECTION SPECIFIC STYLES
+   ========================================= */
+
+/* PROFILE CARD (Glassmorphism) */
+.glass-panel {
+    background: rgba(5, 10, 15, 0.85);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    max-width: 600px;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+    transform: perspective(1000px) rotateX(10deg); /* 3D Tilt */
+}
+.profile-header { display: flex; align-items: center; gap: 30px; margin-bottom: 20px; }
+.hex-frame img { width: 100px; height: 100px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); border: 2px solid var(--neon-blue); }
+.terminal-text { font-family: 'Share Tech Mono', monospace; color: #aaa; line-height: 1.6; }
+
+/* DUAL PROTOCOL (Red vs Blue) */
+.dual-container {
+    display: flex; width: 100%; height: 100%;
+}
+.side {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    position: relative; transition: all 0.5s ease;
+    overflow: hidden;
+}
+.side:hover { flex: 2; } /* Expand on hover */
+.defender { background: linear-gradient(to right, rgba(0,0,50,0.8), transparent); border-right: 1px solid var(--neon-blue); }
+.attacker { background: linear-gradient(to left, rgba(50,0,0,0.8), transparent); border-left: 1px solid var(--neon-red); }
+.bg-icon { position: absolute; font-size: 20rem; opacity: 0.1; z-index: -1; }
+.cyber-list { list-style: none; padding: 0; font-family: 'Share Tech Mono'; }
+.cyber-list li::before { content: "> "; color: var(--neon-blue); }
+
+/* SYSTEM MODULES (The HUD Tiles) */
+.hud-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    width: 80%; pointer-events: auto;
+}
+.hud-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--neon-blue);
+    padding: 20px;
+    position: relative;
+}
+/* The decorative corners from your image */
+.hud-card::before {
+    content: ''; position: absolute; top: -1px; left: -1px;
+    width: 20px; height: 20px;
+    border-top: 3px solid var(--neon-blue); border-left: 3px solid var(--neon-blue);
+}
+.hud-card::after {
+    content: ''; position: absolute; bottom: -1px; right: -1px;
+    width: 20px; height: 20px;
+    border-bottom: 3px solid var(--neon-blue); border-right: 3px solid var(--neon-blue);
+}
+.card-header { font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 15px; letter-spacing: 2px; }
+.progress-bar { height: 6px; background: #333; margin-bottom: 15px; }
+.fill { height: 100%; background: linear-gradient(90deg, var(--neon-blue), white); box-shadow: 0 0 10px var(--neon-blue); }
+.fill.red { background: linear-gradient(90deg, var(--neon-red), white); box-shadow: 0 0 10px var(--neon-red); }
+.fill.purple { background: linear-gradient(90deg, var(--neon-purple), white); box-shadow: 0 0 10px var(--neon-purple); }
+.stat-row { display: flex; justify-content: space-between; font-family: 'Share Tech Mono'; margin-top: 10px; color: #ccc; }
+
+

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Deepak Kumar | Cyber Defense</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <title>Deepak Kumar | Cyber Defense Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <script src="//unpkg.com/three"></script>
@@ -12,39 +12,121 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
 </head>
 <body>
+
+    
+
     <canvas id="star-field"></canvas>
-
-    <div id="loader">INITIALIZING SATELLITE...</div>
-
     <div id="earth-container"></div>
-
-    <div class="overlay" id="text-phase-1">
-        <h1>SYSTEM ONLINE</h1>
-        <p>SCROLL TO INITIATE</p>
+    <div id="grid-overlay"></div> <div class="screen" id="screen-intro">
+        <div class="center-hud">
+            <h1 class="glitch" data-text="SYSTEM ONLINE">SYSTEM ONLINE</h1>
+            <p class="blink">_SCROLL TO INITIATE UPLINK_</p>
+        </div>
     </div>
 
-    <div class="overlay" id="text-phase-2" style="opacity: 0; pointer-events: none;">
-        <h1 style="font-size: 3rem; color: #ff0055;">TARGET LOCKED</h1>
-        <p>LOCATION: INDIA</p>
+    <div class="screen" id="screen-locked">
+        <div class="lock-hud">
+            <h1 class="neon-red">TARGET ACQUIRED</h1>
+            <div class="scan-line"></div>
+            <p>LOCATION: <span class="neon-blue">JAIPUR, INDIA</span></p>
+        </div>
     </div>
 
-    <div class="profile-container" id="profile-card">
-        <div class="glass-panel">
-            <div class="header">
-                <img src="https://media.licdn.com/dms/image/D5603AQF-y8-bB6zK-w/profile-displayphoto-shrink_800_800/0/1706606000000?e=2147483647&v=beta&t=XXXXX" class="avatar">
-                <div class="titles">
-                    <h2 class="neon">DEEPAK (KD) KUMAR</h2>
-                    <span class="badge">SOC ANALYST</span>
+    <div class="screen" id="screen-profile">
+        <div class="glass-panel profile-card">
+            <div class="profile-header">
+                <div class="hex-frame">
+                    <img src="https://media.licdn.com/dms/image/D5603AQF-y8-bB6zK-w/profile-displayphoto-shrink_800_800/0/1706606000000?e=2147483647&v=beta&t=XXXXX" alt="Operative">
+                </div>
+                <div class="identity-data">
+                    <h2 class="neon-blue">DEEPAK (KD) KUMAR</h2>
+                    <div class="badges">
+                        <span class="badge blue">SOC ANALYST</span>
+                        <span class="badge red">DEFENSE SPECIALIST</span>
+                    </div>
                 </div>
             </div>
-            <hr>
-            <div class="bio-text">
-                <p>"Great Power Comes With Great Responsibilities"</p>
-                <p class="small">Specializing in Threat Intelligence & SIEM Monitoring.</p>
+            <div class="terminal-text">
+                <p>> STATUS: ACTIVE</p>
+                <p>> CLEARANCE: EC-COUNCIL CERTIFIED</p>
+                <p>> MOTTO: "Great Power Comes With Great Responsibilities"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen" id="screen-dual">
+        <div class="dual-container">
+            <div class="side defender">
+                <div class="content">
+                    <h2 class="neon-blue">THE SHIELD</h2>
+                    <p>SECURING INFRASTRUCTURE</p>
+                    <ul class="cyber-list">
+                        <li>SOC Operations</li>
+                        <li>SIEM Monitoring</li>
+                        <li>Threat Intelligence</li>
+                    </ul>
+                </div>
+                <div class="bg-icon">🛡️</div>
+            </div>
+            
+            <div class="side attacker">
+                <div class="content">
+                    <h2 class="neon-red">THE SWORD</h2>
+                    <p>UNDERSTANDING THE ENEMY</p>
+                    <ul class="cyber-list">
+                        <li>Phishing Simulation</li>
+                        <li>Ransomware Mitigation</li>
+                        <li>Ethical Hacking</li>
+                    </ul>
+                </div>
+                <div class="bg-icon">⚔️</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen" id="screen-skills">
+        <div class="hud-grid">
+            <div class="hud-card">
+                <div class="card-header">CYBER-DEFENSE PROTOCOL</div>
+                <div class="progress-bar"><div class="fill" style="width: 90%"></div></div>
+                <div class="stat-row">
+                    <span>LOG ANALYSIS</span>
+                    <span class="val">90%</span>
+                </div>
+                <div class="stat-row">
+                    <span>INCIDENT RESPONSE</span>
+                    <span class="val">85%</span>
+                </div>
+            </div>
+
+            <div class="hud-card">
+                <div class="card-header">NETWORK SECURITY</div>
+                <div class="progress-bar"><div class="fill red" style="width: 75%"></div></div>
+                <div class="stat-row">
+                    <span>THREAT DETECTION</span>
+                    <span class="val">ACTIVE</span>
+                </div>
+                <div class="stat-row">
+                    <span>PHISHING ANALYSIS</span>
+                    <span class="val">SECURE</span>
+                </div>
+            </div>
+
+            <div class="hud-card">
+                <div class="card-header">CORE PROCESSING</div>
+                <div class="progress-bar"><div class="fill purple" style="width: 95%"></div></div>
+                <div class="stat-row">
+                    <span>CRITICAL THINKING</span>
+                    <span class="val">OPTIMIZED</span>
+                </div>
+                <div class="stat-row">
+                    <span>COMMUNICATION</span>
+                    <span class="val">LINKED</span>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-</html>
+</html> 
