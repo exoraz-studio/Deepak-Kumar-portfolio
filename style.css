@@ -166,21 +166,91 @@ h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 4rem; text-shadow: 0 
 .hex-frame img { width: 100px; height: 100px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); border: 2px solid var(--neon-blue); }
 .terminal-text { font-family: 'Share Tech Mono', monospace; color: #aaa; line-height: 1.6; }
 
-/* DUAL PROTOCOL (Red vs Blue) */
+/* =========================================
+   FINALIZED: DUAL CORE (GLOW RESTORED, NO LINE)
+   ========================================= */
+
 .dual-container {
-    display: flex; width: 100%; height: 100%;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000; /* Deep Void */
 }
+
+/* REMOVED THE CENTRAL LINE BLOCK COMPLETELY */
+
 .side {
-    flex: 1; display: flex; align-items: center; justify-content: center;
-    position: relative; transition: all 0.5s ease;
-    overflow: hidden;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.6s ease-out;
+    z-index: 2;
 }
-.side:hover { flex: 2; } /* Expand on hover */
-.defender { background: linear-gradient(to right, rgba(0,0,50,0.8), transparent); border-right: 1px solid var(--neon-blue); }
-.attacker { background: linear-gradient(to left, rgba(50,0,0,0.8), transparent); border-left: 1px solid var(--neon-red); }
-.bg-icon { position: absolute; font-size: 20rem; opacity: 0.1; z-index: -1; }
-.cyber-list { list-style: none; padding: 0; font-family: 'Share Tech Mono'; }
-.cyber-list li::before { content: "> "; color: var(--neon-blue); }
+
+/* --- THE DEFENDER (Left Side - Blue Glow) --- */
+.defender {
+    /* Gradient starts strong Blue at the RIGHT edge (Center) and fades LEFT */
+    background: linear-gradient(to left, 
+        rgba(0, 243, 255, 0.25) 0%,   /* Visible Blue Haze at center */
+        rgba(0, 243, 255, 0.05) 50%,  /* Soft Fade */
+        transparent 100%
+    );
+    /* Inner shadow to enhance the depth */
+    box-shadow: inset -100px 0 150px -50px rgba(0, 243, 255, 0.2);
+}
+
+.defender:hover {
+    flex: 1.3; /* Expand slightly */
+    /* Glow gets brighter on interaction */
+    background: linear-gradient(to left, 
+        rgba(0, 243, 255, 0.4) 0%,    
+        rgba(0, 243, 255, 0.1) 60%, 
+        transparent 100%
+    );
+    box-shadow: inset -150px 0 200px -50px rgba(0, 243, 255, 0.3);
+}
+
+/* --- THE ATTACKER (Right Side - Red Glow) --- */
+.attacker {
+    /* Gradient starts strong Red at the LEFT edge (Center) and fades RIGHT */
+    background: linear-gradient(to right, 
+        rgba(255, 0, 85, 0.25) 0%,    /* Visible Red Haze at center */
+        rgba(255, 0, 85, 0.05) 50%,   /* Soft Fade */
+        transparent 100%
+    );
+    /* Inner shadow to enhance the depth */
+    box-shadow: inset 100px 0 150px -50px rgba(255, 0, 85, 0.2);
+}
+
+.attacker:hover {
+    flex: 1.3; /* Expand slightly */
+    /* Glow gets brighter on interaction */
+    background: linear-gradient(to right, 
+        rgba(255, 0, 85, 0.4) 0%,     
+        rgba(255, 0, 85, 0.1) 60%, 
+        transparent 100%
+    );
+    box-shadow: inset 150px 0 200px -50px rgba(255, 0, 85, 0.3);
+}
+
+/* Content Styling */
+.glass-overlay {
+    padding: 40px;
+    max-width: 550px;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8); 
+    z-index: 10;
+}
+
+.icon-bg {
+    font-size: 6rem;
+    margin-bottom: 20px;
+    opacity: 1; 
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));
+}
 
 /* SYSTEM MODULES (The HUD Tiles) */
 .hud-grid {
@@ -370,77 +440,200 @@ h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 4rem; text-shadow: 0 
 
 
 
+
+
+
 /* =========================================
-   NEW: ANIMATED HEX TILES (Reference Image Style)
+   NEW: "BREATHING" GLOW BUTTONS
    ========================================= */
 
-/* 1. The Animation Definition */
-@keyframes lineFlow {
-    0% { stroke-dashoffset: 1000; }
-    100% { stroke-dashoffset: 0; }
+/* 1. Define the Pulse Animation */
+@keyframes breathingGlow {
+    0% {
+        box-shadow: 0 0 5px var(--btn-color), 0 0 15px var(--btn-color);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--btn-color), 0 0 50px var(--btn-color);
+        transform: scale(1.05); /* Slight "Breath" expansion */
+    }
+    100% {
+        box-shadow: 0 0 5px var(--btn-color), 0 0 15px var(--btn-color);
+        transform: scale(1);
+    }
 }
 
-/* 2. The Tile Container */
+/* 2. Base Button Style (Blue Default) */
+.cyber-btn {
+    --btn-color: var(--neon-blue); /* Default variable */
+    
+    background: var(--btn-color);
+    color: #000; /* Black text on bright neon is most readable */
+    border: none;
+    border-radius: 4px; /* Slightly rounded like the reference */
+    padding: 12px 40px;
+    font-family: 'Orbitron';
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    
+    /* The Breathing Animation */
+    animation: breathingGlow 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+/* Hover State - Stop breathing and go Full Power */
+.cyber-btn:hover {
+    animation: none; /* Stop the pulse */
+    box-shadow: 0 0 20px var(--btn-color), 0 0 60px var(--btn-color), 0 0 80px var(--btn-color);
+    transform: scale(1.1);
+    color: #fff;
+    text-shadow: 0 0 5px #000;
+}
+
+/* 3. Red Variant (Attacker) */
+.cyber-btn.red {
+    --btn-color: var(--neon-red);
+}
+
+/* 4. Purple Variant (Soft Skills) */
+.cyber-btn.purple {
+    --btn-color: var(--neon-purple);
+    color: #fff; /* White text looks better on dark purple */
+}
+
+/* Small Button Adjustment for the Tiles */
+.cyber-btn.sm {
+    padding: 8px 25px;
+    font-size: 0.8rem;
+}
+
+
+/* =========================================
+   FINALIZED: CYBER GLASS CARDS (Rectangular Reference Match)
+   ========================================= */
+
+/* 1. The Card Container */
 .hex-tile {
-    width: 400px;
-    height: 400px;
+    /* Dimensions from your reference */
+    width: 360px;
+    height: 500px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 60px 40px; /* Push content inside the hexagon graphic */
+    padding: 30px;
     box-sizing: border-box;
+
+    /* RECTANGLE SHAPE WITH ROUNDED CORNERS */
+    border-radius: 20px;
     
-    /* THE DUAL RED/BLUE GLOW */
-    /* We use filters to create a complex, multi-colored shadow */
-    filter: drop-shadow(-10px -10px 20px rgba(0, 243, 255, 0.3))  /* Blue Top-Left */
-            drop-shadow(10px 10px 20px rgba(255, 0, 85, 0.3));    /* Red Bottom-Right */
+    /* THE GLASS BACKGROUND with Subtle Texture */
+    background: 
+        /* Scratch texture overlay (optional) */
+        linear-gradient(rgba(18, 20, 30, 0.9), rgba(18, 20, 30, 0.9)), 
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 11px);
     
-    /* THE COMPLEX SVG BACKGROUND */
-    /* This is an embedded vector graphic that draws the lines and shapes */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3Cstyle%3E.cls-1,.cls-2{fill:none;stroke-miterlimit:10;}.cls-1{stroke:%2300f3ff;stroke-width:2px;}.cls-2{stroke:rgba(0,243,255,0.3);stroke-width:1px;stroke-dasharray:10 5;animation:flow 20s linear infinite;}@keyframes flow{to{stroke-dashoffset:-1000;}}%3C/style%3E%3C/defs%3E%3Cg opacity='0.8'%3E%3Cpolygon class='cls-1' points='388.5 300 388.5 100 200 11.5 11.5 100 11.5 300 200 388.5 388.5 300'/%3E%3Cline class='cls-1' x1='200' y1='11.5' x2='200' y2='100'/%3E%3Cline class='cls-1' x1='200' y1='388.5' x2='200' y2='300'/%3E%3Cline class='cls-1' x1='11.5' y1='100' x2='100' y2='150'/%3E%3Cline class='cls-1' x1='388.5' y1='100' x2='300' y2='150'/%3E%3Cline class='cls-1' x1='11.5' y1='300' x2='100' y2='250'/%3E%3Cline class='cls-1' x1='388.5' y1='300' x2='300' y2='250'/%3E%3C/g%3E%3Cg opacity='0.4'%3E%3Cline class='cls-2' x1='100' y1='150' x2='300' y2='150'/%3E%3Cline class='cls-2' x1='100' y1='250' x2='300' y2='250'/%3E%3Cline class='cls-2' x1='100' y1='150' x2='100' y2='250'/%3E%3Cline class='cls-2' x1='300' y1='150' x2='300' y2='250'/%3E%3Cline class='cls-2' x1='200' y1='100' x2='100' y2='150'/%3E%3Cline class='cls-2' x1='200' y1='100' x2='300' y2='150'/%3E%3Cline class='cls-2' x1='200' y1='300' x2='100' y2='250'/%3E%3Cline class='cls-2' x1='200' y1='300' x2='300' y2='250'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    
-    backdrop-filter: blur(5px);
-    transition: transform 0.3s ease, filter 0.3s ease;
+    /* THE DUAL BORDER (Cyan Left, Pink Right) */
+    /* We simulate this with box-shadows to get the glow */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle base border */
+    box-shadow: 
+        -2px 0 10px rgba(0, 243, 255, 0.5),  /* Cyan Glow Left */
+         2px 0 10px rgba(255, 0, 85, 0.5),   /* Pink Glow Right */
+        inset 0 0 20px rgba(0, 0, 0, 0.8);   /* Inner Shadow for depth */
+        
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect for the tile */
+/* 2. The Border Accents (The colored lines on the edges) */
+.hex-tile::before {
+    content: ''; position: absolute;
+    top: 10%; bottom: 10%; left: 0; width: 3px;
+    background: var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue);
+    border-radius: 2px;
+}
+.hex-tile::after {
+    content: ''; position: absolute;
+    top: 10%; bottom: 10%; right: 0; width: 3px;
+    background: var(--neon-red);
+    box-shadow: 0 0 10px var(--neon-red);
+    border-radius: 2px;
+}
+
+/* Hover Effect */
 .hex-tile:hover {
-    transform: scale(1.05);
-    filter: drop-shadow(-15px -15px 30px rgba(0, 243, 255, 0.6)) 
-            drop-shadow(15px 15px 30px rgba(255, 0, 85, 0.6));
+    transform: translateY(-5px);
+    box-shadow: 
+        -4px 0 20px rgba(0, 243, 255, 0.7), 
+         4px 0 20px rgba(255, 0, 85, 0.7),
+        inset 0 0 30px rgba(0,0,0,0.5);
 }
 
-/* Adjustments for content inside the new shape */
+/* --- Typography & Layout Updates --- */
+
 .hex-tile .tile-header {
-    border-bottom: none;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 .hex-tile .tile-header span:first-child {
-    font-size: 1.2rem;
-    text-shadow: 0 0 10px var(--neon-blue);
+    font-family: 'Orbitron';
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ff0055; /* Pink Title like reference */
+    text-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
+    letter-spacing: 1px;
 }
 
 .hex-tile .tile-body {
-    padding: 0; /* Remove extra padding */
+    flex-grow: 1;
+    display: flex; flex-direction: column; justify-content: space-evenly;
 }
 
+/* Stat Rows */
+.stat-row { 
+    font-family: 'Rajdhani'; font-weight: 600; font-size: 1rem; color: #ccc; 
+    margin-bottom: 5px; 
+}
+.stat-row .val { color: var(--neon-blue); }
 
+/* Progress Bars */
+.bar {
+    background: rgba(0,0,0,0.5);
+    height: 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.fill {
+    /* Gradient fill like reference */
+    background: linear-gradient(90deg, var(--neon-blue), #00ffaa); 
+}
+.fill.red { background: linear-gradient(90deg, var(--neon-red), #ff5500); }
+.fill.purple { background: linear-gradient(90deg, var(--neon-purple), #ff00ff); }
 
-
-
+/* Footer Button - Cyan Block */
 .hex-tile .tile-footer {
-    border-top: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    display: flex; justify-content: center;
 }
 
-
-
-
-
-
-
+/* Override button to match the "INITIATE SWEEP" look */
+.hex-tile .cyber-btn {
+    background: var(--neon-blue);
+    color: #000;
+    border-radius: 20px; /* Fully rounded pill shape */
+    box-shadow: 0 0 15px var(--neon-blue);
+    width: 100%;
+    text-align: center;
+    font-weight: 800;
+}
+.hex-tile .cyber-btn:hover {
+    background: #fff;
+    box-shadow: 0 0 25px #fff;
+}
