@@ -431,12 +431,147 @@ h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 4rem; text-shadow: 0 
 .cyber-link { display: block; color: #fff; text-decoration: none; border: 1px solid #333; padding: 10px; margin: 5px 0; text-align: center; transition: 0.3s; font-family: 'Share Tech Mono'; }
 .cyber-link:hover { border-color: var(--neon-blue); background: rgba(0, 243, 255, 0.1); }
 
-/* CERTIFICATIONS */
-.cert-container { display: flex; gap: 20px; flex-direction: column; align-items: center; }
-.cert-card { display: flex; align-items: center; background: rgba(0,0,0,0.8); border: 1px solid #333; padding: 20px; width: 500px; border-left: 4px solid var(--neon-blue); }
-.cert-icon { font-size: 2rem; margin-right: 20px; }
-.cert-info h3 { margin: 0; color: var(--neon-blue); font-family: 'Orbitron'; font-size: 1.1rem; }
-.cert-info p { margin: 5px 0 0 0; font-family: 'Share Tech Mono'; color: #aaa; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   SCENE 5: HOLOGRAPHIC SECURITY CLEARANCES
+   ========================================= */
+
+.cert-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between cards */
+    align-items: center;
+    perspective: 1000px; /* Enable 3D effects */
+}
+
+/* 1. The ID Card Container */
+.cert-card {
+    position: relative;
+    width: 650px;
+    padding: 35px;
+    
+    /* Dark Glass Background */
+    background: rgba(10, 12, 16, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* The Cyan "Power Bar" on the left */
+    border-left: 6px solid var(--neon-blue);
+    
+    display: flex;
+    align-items: flex-start; /* Align top */
+    gap: 30px;
+    
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    overflow: hidden; /* Keep the scanner inside */
+    
+    transition: all 0.4s ease;
+}
+
+/* 2. The "Scanner" Animation (Hidden by default) */
+.cert-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%;
+    width: 100%; height: 100%;
+    
+    /* A slanted light beam */
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        rgba(0, 243, 255, 0.1) 40%, 
+        rgba(0, 243, 255, 0.4) 50%, 
+        rgba(0, 243, 255, 0.1) 60%, 
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: 0s;
+}
+
+/* 3. The "Pulse" on the Left Bar */
+.cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: -6px; /* Align with border */
+    width: 6px;
+    background: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    opacity: 0.5;
+    animation: barPulse 2s infinite alternate;
+}
+
+@keyframes barPulse {
+    0% { box-shadow: 0 0 10px var(--neon-blue); opacity: 0.5; }
+    100% { box-shadow: 0 0 25px var(--neon-blue); opacity: 1; }
+}
+
+/* 4. HOVER INTERACTION (The Scan) */
+.cert-card:hover {
+    transform: translateX(10px); /* Move slightly right */
+    background: rgba(15, 20, 30, 0.95);
+    border-color: rgba(0, 243, 255, 0.3);
+    box-shadow: 0 0 40px rgba(0, 243, 255, 0.1);
+}
+
+.cert-card:hover::after {
+    left: 150%; /* Move scanner across */
+    transition: 0.6s ease-in-out;
+}
+
+/* 5. Floating Icon Animation */
+@keyframes iconFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+.cert-icon {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+    animation: iconFloat 4s ease-in-out infinite; /* Continuous float */
+}
+
+/* 6. Typography */
+.cert-info h3 {
+    margin: 0 0 10px 0;
+    color: var(--neon-blue);
+    font-family: 'Orbitron';
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+.cert-info p {
+    font-family: 'Share Tech Mono';
+    color: #bbb;
+    margin: 5px 0;
+    line-height: 1.4;
+    font-size: 1rem;
+}
+
+/* The "Validation" text needs to look like code */
+.cert-info p:nth-child(2) {
+    color: #fff;
+    background: rgba(0, 243, 255, 0.1);
+    display: inline-block;
+    padding: 2px 8px;
+    border-left: 2px solid var(--neon-blue);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
 
 
 
@@ -511,129 +646,170 @@ h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 4rem; text-shadow: 0 
 }
 
 
+
+
+
+
+
+
+
+
+
+
 /* =========================================
-   FINALIZED: CYBER GLASS CARDS (Rectangular Reference Match)
+   FINALIZED: ANIMATED CYBER CARDS
    ========================================= */
 
-/* 1. The Card Container */
+/* 1. Define the "Running Energy" Animation */
+@keyframes neonFlow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 200%; }
+}
+
 .hex-tile {
-    /* Dimensions from your reference */
+    /* Dimensions */
     width: 360px;
-    height: 500px;
+    height: 480px; 
     position: relative;
+    
+    /* Layout */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 30px;
+    padding: 30px 25px; 
     box-sizing: border-box;
 
-    /* RECTANGLE SHAPE WITH ROUNDED CORNERS */
+    /* Background: Deep Void */
+    background: linear-gradient(180deg, rgba(12, 14, 18, 0.95) 0%, rgba(8, 10, 14, 0.98) 100%);
     border-radius: 20px;
     
-    /* THE GLASS BACKGROUND with Subtle Texture */
-    background: 
-        /* Scratch texture overlay (optional) */
-        linear-gradient(rgba(18, 20, 30, 0.9), rgba(18, 20, 30, 0.9)), 
-        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 11px);
+    /* Subtle Top/Bottom borders */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     
-    /* THE DUAL BORDER (Cyan Left, Pink Right) */
-    /* We simulate this with box-shadows to get the glow */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle base border */
-    box-shadow: 
-        -2px 0 10px rgba(0, 243, 255, 0.5),  /* Cyan Glow Left */
-         2px 0 10px rgba(255, 0, 85, 0.5),   /* Pink Glow Right */
-        inset 0 0 20px rgba(0, 0, 0, 0.8);   /* Inner Shadow for depth */
-        
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8);
     backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* 2. The Border Accents (The colored lines on the edges) */
+/* --- THE ANIMATED NEON PILLARS --- */
+
+/* Left Pillar (Cyan Flow) */
 .hex-tile::before {
     content: ''; position: absolute;
-    top: 10%; bottom: 10%; left: 0; width: 3px;
-    background: var(--neon-blue);
-    box-shadow: 0 0 10px var(--neon-blue);
-    border-radius: 2px;
+    top: 25px; bottom: 25px; left: 0; width: 4px;
+    
+    /* The Running Gradient */
+    background: linear-gradient(to bottom, 
+        var(--neon-blue) 0%, 
+        #ffffff 50%, 
+        var(--neon-blue) 100%);
+    background-size: 100% 200%; /* Double height for smooth looping */
+    animation: neonFlow 3s linear infinite; /* The Moving Animation */
+    
+    box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue);
+    border-radius: 0 4px 4px 0;
+    transition: all 0.3s ease;
 }
+
+/* Right Pillar (Pink Flow) */
 .hex-tile::after {
     content: ''; position: absolute;
-    top: 10%; bottom: 10%; right: 0; width: 3px;
-    background: var(--neon-red);
-    box-shadow: 0 0 10px var(--neon-red);
-    border-radius: 2px;
+    top: 25px; bottom: 25px; right: 0; width: 4px;
+    
+    /* The Running Gradient */
+    background: linear-gradient(to bottom, 
+        var(--neon-red) 0%, 
+        #ffffff 50%, 
+        var(--neon-red) 100%);
+    background-size: 100% 200%;
+    animation: neonFlow 3s linear infinite;
+    
+    box-shadow: 0 0 15px var(--neon-red), 0 0 30px var(--neon-red);
+    border-radius: 4px 0 0 4px;
+    transition: all 0.3s ease;
 }
 
-/* Hover Effect */
+/* --- HOVER EFFECT --- */
 .hex-tile:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-        -4px 0 20px rgba(0, 243, 255, 0.7), 
-         4px 0 20px rgba(255, 0, 85, 0.7),
-        inset 0 0 30px rgba(0,0,0,0.5);
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(0,0,0,1);
 }
+.hex-tile:hover::before { top: 10px; bottom: 10px; animation-duration: 1s; /* Speed up on hover */ }
+.hex-tile:hover::after { top: 10px; bottom: 10px; animation-duration: 1s; }
 
-/* --- Typography & Layout Updates --- */
+
+/* --- CONTENT STYLING --- */
 
 .hex-tile .tile-header {
     display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 .hex-tile .tile-header span:first-child {
-    font-family: 'Orbitron';
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #ff0055; /* Pink Title like reference */
-    text-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
+    font-family: 'Orbitron'; font-weight: 700; font-size: 1rem;
+    color: var(--neon-red);
+    text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
     letter-spacing: 1px;
+}
+
+.hex-tile .warn, .hex-tile .crit, .hex-tile .ok {
+    font-size: 0.65rem; padding: 2px 6px;
+    border: 1px solid var(--neon-blue); color: var(--neon-blue);
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
 }
 
 .hex-tile .tile-body {
     flex-grow: 1;
-    display: flex; flex-direction: column; justify-content: space-evenly;
+    display: flex; flex-direction: column; 
+    gap: 20px;
 }
 
-/* Stat Rows */
 .stat-row { 
-    font-family: 'Rajdhani'; font-weight: 600; font-size: 1rem; color: #ccc; 
-    margin-bottom: 5px; 
+    display: flex; justify-content: space-between;
+    font-family: 'Rajdhani'; font-weight: 600; font-size: 0.9rem; 
+    color: #ccc; margin-bottom: 8px; letter-spacing: 1px;
 }
-.stat-row .val { color: var(--neon-blue); }
+.stat-row .val { color: var(--neon-blue); font-weight: bold; }
 
-/* Progress Bars */
 .bar {
-    background: rgba(0,0,0,0.5);
-    height: 8px;
-    border-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.1);
+    height: 8px; background: rgba(255,255,255,0.05);
+    border-radius: 10px; overflow: hidden;
 }
-.fill {
-    /* Gradient fill like reference */
-    background: linear-gradient(90deg, var(--neon-blue), #00ffaa); 
-}
-.fill.red { background: linear-gradient(90deg, var(--neon-red), #ff5500); }
-.fill.purple { background: linear-gradient(90deg, var(--neon-purple), #ff00ff); }
+.fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--neon-blue), #00ffaa); box-shadow: 0 0 10px var(--neon-blue); }
+.fill.red { background: linear-gradient(90deg, var(--neon-red), #ff5500); box-shadow: 0 0 10px var(--neon-red); }
+.fill.purple { background: linear-gradient(90deg, var(--neon-purple), #ff00ff); box-shadow: 0 0 10px var(--neon-purple); }
 
-/* Footer Button - Cyan Block */
+/* --- FOOTER & CENTERED BUTTONS --- */
 .hex-tile .tile-footer {
-    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: auto;
     padding-top: 20px;
-    display: flex; justify-content: center;
 }
 
-/* Override button to match the "INITIATE SWEEP" look */
 .hex-tile .cyber-btn {
-    background: var(--neon-blue);
-    color: #000;
-    border-radius: 20px; /* Fully rounded pill shape */
-    box-shadow: 0 0 15px var(--neon-blue);
     width: 100%;
-    text-align: center;
-    font-weight: 800;
+    height: 50px; /* Fixed height to ensure perfect centering */
+    border-radius: 30px;
+    
+    /* THE CENTERING FIX */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    
+    font-size: 0.9rem; font-weight: 800;
+    letter-spacing: 2px;
+    background: var(--neon-blue); color: #000;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+    border: none;
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
 }
+
 .hex-tile .cyber-btn:hover {
-    background: #fff;
-    box-shadow: 0 0 25px #fff;
+    background: #fff; box-shadow: 0 0 40px #fff;
+    transform: scale(1.05);
 }
+
+/* Button Colors */
+.hex-tile .cyber-btn.red { background: var(--neon-red); box-shadow: 0 0 20px rgba(255, 0, 85, 0.6); }
+.hex-tile .cyber-btn.purple { background: var(--neon-purple); color: #fff; box-shadow: 0 0 20px rgba(188, 19, 254, 0.6); }
